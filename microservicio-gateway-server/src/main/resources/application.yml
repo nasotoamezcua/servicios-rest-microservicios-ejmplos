@@ -1,0 +1,37 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: microservicio-productos
+        uri: lb://microservicio-productos
+        predicates:          - Path=/api/productos/**
+#          - Header=token, \d+
+#          - Header=Content-Type, application/json
+#          - Method=GET, POST
+#          - Query=color, verde
+#          - Cookie=color, azul
+        filters:          - StripPrefix=2
+          - name: Ejemplo
+            args:
+              mensaje: Hola mi mensaje personalizado
+              cookieNombre: usuario
+              cookieValor: NestorSoto
+      - id: microservicio-items
+        uri: lb://microservicio-items
+        predicates:
+          - Path=/api/items/**
+        filters:
+          - StripPrefix=2
+          - Ejemplo=Hola mi mensaje personalizado 2, usuario, AlejandroSoto
+          - AddRequestHeader=token-request, 12345
+          - AddRequestParameter=nombre, amezcua
+          - SetResponseHeader=Content-Type, text/plain
+          - AddResponseHeader=token-response, 12345678
+          
+#Lista de filtros       
+#https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gatewayfilter-factories
+
+#Lista de Predicates
+#https://docs.spring.io/spring-cloud-gateway/docs/3.0.4/reference/html/#gateway-request-predicates-factories
+          
+                   
