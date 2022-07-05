@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,8 +16,8 @@ import com.tecnonessystem.service.IProductoService;
 @RestController
 public class ProductoController {
 	
-	//@Autowired
-	//private Environment env;
+	@Autowired
+	private Environment env;
 	
 	@Value("${server.port}")
 	private Integer port;
@@ -28,8 +29,8 @@ public class ProductoController {
 	public List<Producto> litsar() {
 		
 		return service.findAll().stream().map(p -> {
-			//p.setPort(Integer.parseInt(env.getProperty("local.server.port")));
-			p.setPort(port);
+			p.setPort(Integer.parseInt(env.getProperty("local.server.port")));
+			//p.setPort(port);
 			return p;
 		}).collect(Collectors.toList());
 	}
@@ -43,11 +44,11 @@ public class ProductoController {
 		*/
 		
 		Producto p = service.findById(id);
-		//p.setPort(Integer.parseInt(env.getProperty("local.server.port")));
-		p.setPort(port);
+		p.setPort(Integer.parseInt(env.getProperty("local.server.port")));
+		//p.setPort(port);
 		
 		
-		/* PROBAR TIME OUT CON RIBON Y HYSTRIX
+		/* PROBAR TIME OUT PARA RIBON , HYSTRIX y  ZUUL
 		try {
 			Thread.sleep(2000L);
 		} catch (InterruptedException e) {
@@ -55,6 +56,7 @@ public class ProductoController {
 			e.printStackTrace();
 		}
 		*/
+		
 		
 		return p;
 	}

@@ -1,0 +1,9 @@
+insert into productos (nombre, precio, fecha) VALUES('Producto 1', 100, NOW());
+insert into productos (nombre, precio, fecha) VALUES('Producto 2', 200, NOW());
+insert into productos (nombre, precio, fecha) VALUES('Producto 3', 300, NOW());
+insert into productos (nombre, precio, fecha) VALUES('Producto 4', 400, NOW());
+insert into productos (nombre, precio, fecha) VALUES('Producto 5', 500, NOW());
+insert into productos (nombre, precio, fecha) VALUES('Producto 6', 600, NOW());
+insert into productos (nombre, precio, fecha) VALUES('Producto 7', 700, NOW());
+insert into productos (nombre, precio, fecha) VALUES('Producto 8', 800, NOW());
+insert into productos (nombre, precio, fecha) VALUES('Producto 9', 900, NOW());
