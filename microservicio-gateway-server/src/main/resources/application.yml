@@ -1,3 +1,24 @@
+resilience4j:
+  circuitbreaker:
+    configs:
+      defecto:
+        sliding-window-size: 6
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 20s
+        permitted-number-of-calls-in-half-open-state: 4
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 2s
+    instances:
+      productos:
+        base-config: defecto
+  timelimiter:
+    configs:
+      defecto:
+        timeout-duration: 3s
+    instances:
+      productos:
+        base-config: defecto
+
 spring:
   cloud:
     gateway:
@@ -10,7 +31,12 @@ spring:
 #          - Method=GET, POST
 #          - Query=color, verde
 #          - Cookie=color, azul
-        filters:          - StripPrefix=2
+        filters:
+          - name: CircuitBreaker
+            args:
+              name: productos
+              statusCodes: 500
+              fallbackUri: forward:/api/items/ver/5/cantidad/10          - StripPrefix=2
           - name: Ejemplo
             args:
               mensaje: Hola mi mensaje personalizado
@@ -33,5 +59,7 @@ spring:
 
 #Lista de Predicates
 #https://docs.spring.io/spring-cloud-gateway/docs/3.0.4/reference/html/#gateway-request-predicates-factories
+
+
           
                    

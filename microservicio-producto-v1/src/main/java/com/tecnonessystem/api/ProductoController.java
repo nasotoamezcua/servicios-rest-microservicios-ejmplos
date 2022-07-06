@@ -1,6 +1,7 @@
 package com.tecnonessystem.api;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +37,17 @@ public class ProductoController {
 	}
 	
 	@GetMapping("/ver/{id}")
-	public Producto detalle(@PathVariable("id") Long id) {
+	public Producto detalle(@PathVariable("id") Long id) throws InterruptedException {
 		
-		/* PROBAR HYSTRIX
+		/* Probar Hystrix
 		boolean error = false;
 		if(!error)	throw new RuntimeException("Error lanzado");
 		*/
+		
+		/* Probar Resilence4J */
+		if(id.equals(10L)) throw new IllegalStateException("Producto no encontrado!");
+		
+		if(id.equals(7L)) TimeUnit.SECONDS.sleep(5L);
 		
 		Producto p = service.findById(id);
 		p.setPort(Integer.parseInt(env.getProperty("local.server.port")));
