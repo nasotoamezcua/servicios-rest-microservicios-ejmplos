@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,6 +38,34 @@ public class ItemServiceRestTemplateImpl implements IItemService{
 		Producto producto = clienteRestTemplate.getForObject("http://microservicio-productos/ver/{id}", Producto.class, pathVariables);
 		
 		return new Item(producto, cantidad);
+	}
+
+	@Override
+	public Producto save(Producto producto) {
+		HttpEntity<Producto> body = new HttpEntity<Producto>(producto);
+		ResponseEntity<Producto> response =  clienteRestTemplate.exchange("http://microservicio-productos/crear", HttpMethod.POST, body, Producto.class);
+		return response.getBody();
+	}
+
+	@Override
+	public Producto update(Producto producto, Long id) {
+		
+		Map<String, Object> pathVariables = new HashMap<String, Object>();
+		pathVariables.put("id", id);
+		
+		HttpEntity<Producto> body = new HttpEntity<Producto>(producto);
+		ResponseEntity<Producto> response =  clienteRestTemplate.exchange("http://microservicio-productos/editar/{id}", HttpMethod.PUT, body, Producto.class, pathVariables);
+		return response.getBody();
+	}
+
+	@Override
+	public void delete(Long id) {
+		
+		Map<String, Object> pathVariables = new HashMap<String, Object>();
+		pathVariables.put("id", id);
+		
+		clienteRestTemplate.delete("http://microservicio-productos/eliminar/{id}", pathVariables);
+		
 	}
 
 }

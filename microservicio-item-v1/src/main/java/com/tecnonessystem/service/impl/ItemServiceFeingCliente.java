@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.tecnonessystem.feing.IProductoFeignCliente;
 import com.tecnonessystem.model.Item;
+import com.tecnonessystem.model.Producto;
 import com.tecnonessystem.service.IItemService;
 
 @Service("itemServiceFeingCliente")
@@ -25,6 +26,21 @@ public class ItemServiceFeingCliente implements IItemService{
 	@Override
 	public Item findById(Long id, Integer cantidad) {
 		return new Item(feingCliente.detalle(id), cantidad);
+	}
+
+	@Override
+	public Producto save(Producto producto) {
+		return feingCliente.crear(producto);
+	}
+
+	@Override
+	public Producto update(Producto producto, Long id) {
+		return feingCliente.editar(producto, id);
+	}
+
+	@Override
+	public void delete(Long id) {
+		feingCliente.eliminar(id);
 	}
 	
 	/*

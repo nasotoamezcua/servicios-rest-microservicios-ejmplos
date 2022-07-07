@@ -3,6 +3,8 @@ package com.tecnonessystem.feing.hystrix;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.tecnonessystem.feing.IProductoFeignCliente;
@@ -10,6 +12,8 @@ import com.tecnonessystem.model.Producto;
 
 @Component
 public class ProductoFeignClienteHystrix implements IProductoFeignCliente {
+	
+	private Logger logger = LoggerFactory.getLogger(ProductoFeignClienteHystrix.class);
 
 	@Override
 	public List<Producto> listar() {
@@ -33,6 +37,34 @@ public class ProductoFeignClienteHystrix implements IProductoFeignCliente {
 		producto.setPrecio(500.00);
 		
 		return producto;
+	}
+
+	@Override
+	public Producto crear(Producto producto) {
+		
+		logger.info("Producto no Creado");
+		
+		producto.setNombre("Producto no Creado");
+		producto.setPrecio(0.0);
+		
+		return producto;
+	}
+
+	@Override
+	public Producto editar(Producto producto, Long id) {
+		
+		logger.info("Producto no Actualizdo");
+		
+		producto.setNombre("Producto no Actualizdo");
+		producto.setPrecio(0.0);
+		
+		return producto;
+	}
+
+	@Override
+	public void eliminar(Long id) {
+		logger.info("Producto no Eliminado");
+		
 	}
 
 }
