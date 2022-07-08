@@ -1,5 +1,7 @@
 package com.tecnonessystem.model;
 
+import com.tecnonessystem.commons.entity.Producto;
+
 public class Item {
 	
 	private Producto producto;

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tecnonessystem.entity.Producto;
+import com.tecnonessystem.commons.entity.Producto;
 import com.tecnonessystem.repository.IProductoRepository;
 import com.tecnonessystem.service.IProductoService;
 

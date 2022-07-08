@@ -3,7 +3,7 @@ package com.tecnonessystem.service;
 import java.util.List;
 
 import com.tecnonessystem.model.Item;
-import com.tecnonessystem.model.Producto;
+import com.tecnonessystem.commons.entity.Producto;
 
 public interface IItemService {
 	

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tecnonessystem.model.Item;
-import com.tecnonessystem.model.Producto;
+import com.tecnonessystem.commons.entity.Producto;
 import com.tecnonessystem.service.IItemService;
 
 @RefreshScope

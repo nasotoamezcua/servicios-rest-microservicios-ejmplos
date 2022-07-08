@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.tecnonessystem.model.Item;
-import com.tecnonessystem.model.Producto;
+import com.tecnonessystem.commons.entity.Producto;
 import com.tecnonessystem.service.IItemService;
 
 @Service("itemServiceRestTemplateImpl")

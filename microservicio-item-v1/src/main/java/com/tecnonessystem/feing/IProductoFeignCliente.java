@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.tecnonessystem.feing.hystrix.ProductoFeignClienteHystrix;
-import com.tecnonessystem.model.Producto;
+import com.tecnonessystem.commons.entity.Producto;
 
 @FeignClient(name = "microservicio-productos" , fallback = ProductoFeignClienteHystrix.class )
 public interface IProductoFeignCliente {

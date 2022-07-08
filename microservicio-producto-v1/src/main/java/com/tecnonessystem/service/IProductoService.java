@@ -2,7 +2,9 @@ package com.tecnonessystem.service;
 
 import java.util.List;
 
-import com.tecnonessystem.entity.Producto;
+import com.tecnonessystem.commons.entity.Producto;
+
+
 
 public interface IProductoService {
 	

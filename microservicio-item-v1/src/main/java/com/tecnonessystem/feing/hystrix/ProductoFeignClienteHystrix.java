@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.tecnonessystem.feing.IProductoFeignCliente;
-import com.tecnonessystem.model.Producto;
+import com.tecnonessystem.commons.entity.Producto;
 
 @Component
 public class ProductoFeignClienteHystrix implements IProductoFeignCliente {
